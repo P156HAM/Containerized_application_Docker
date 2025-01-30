@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - 1234:80
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - 5000:5000
+    environment:
+      DB_USER: ${MONGO_ADMIN_USER}
+      DB_PWD: ${MONGO_ADMIN_PASS}
+      DB_HOST: mongo
+      DB_NAME: ${DB_NAME}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:5.0.31
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ADMIN_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ADMIN_PASS}
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+    volumes:
+      - mongodb_data:/data/db
+      - ./db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+
+volumes:
+  mongodb_data:
