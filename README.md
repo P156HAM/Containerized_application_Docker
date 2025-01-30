@@ -21,12 +21,12 @@ First, run:
 cp .env.example .env
 ```
 
-Then, edit the .env file and update the necessary credentials (MONGO_ADMIN_USER, MONGO_ADMIN_PASS, DB_NAME).
+Then, edit the .env file and update the necessary credentials (MONGO_ADMIN_USER, MONGO_ADMIN_PASS).
 
 ### 3️⃣ Start the Application with Docker
 
 Run the following command to start all services:
 
 ```sh
-docker-compose up --build
+docker-compose up
 ```

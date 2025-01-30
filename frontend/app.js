@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const contentDiv = document.getElementById("content");
-  const BACKEND_URL = "http://localhost:5000";
+  const BACKEND_URL = "http://localhost:3001";
   const fetchBooks = async () => {
     try {
       const response = await fetch(`${BACKEND_URL}/books`);

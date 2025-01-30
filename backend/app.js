@@ -4,8 +4,9 @@ import cors from "cors";
 
 const app = express();
 
-const PORT = 5000;
-const { DB_NAME, DB_USER, DB_PWD } = process.env;
+const PORT = 3001;
+const { DB_USER, DB_PWD } = process.env;
+const DB_NAME = "booksdb";
 const DB_HOST = "mongo";
 const MONGO_URI = `mongodb://${DB_USER}:${DB_PWD}@${DB_HOST}:27017/${DB_NAME}?authSource=admin`;
 
@@ -22,9 +23,9 @@ const bookSchema = new Schema({
 });
 const Book = model("book", bookSchema);
 
-const sendResponse = (res, statusCode, sucess, message, data = null) => {
+const sendResponse = (res, statusCode, success, message, data = null) => {
   res.status(statusCode).json({
-    sucess,
+    success,
     message,
     data,
   });
